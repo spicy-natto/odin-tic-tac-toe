@@ -1,10 +1,12 @@
 import * as R from 'ramda';
 import * as Util from './util.js';
 
-function Gameboard() {
-    const sideLength = 3;
-    const allowedCellVals = ['X', 'O', ''];
-    const initBoard = () => Util.init2dArray(sideLength, sideLength, () => '');
+function Gameboard(sideLength, playerVals) {
+    const emptyVal = '';
+    const allowedVals = playerVals.concat(emptyVal);
+
+    const initBoard = () => 
+        Util.init2dArray(sideLength, sideLength, () => emptyVal);
     let board = initBoard();
 
     const save = (brd) => {
@@ -26,10 +28,11 @@ function Gameboard() {
 
     const getBoard = () => R.clone(board);
 
+    // Basic validation but may not contain game logic.
     const isBoardValid = (brd) => {
         return Array.isArray(brd)
         && Util.isSquareOfLen(sideLength, brd)
-        && Util.onlyContainsVals2d(brd);
+        && Util.onlyContainsVals2d(allowedVals, brd);
     };
 
     return { save, getBoard, initBoard, setCell };
