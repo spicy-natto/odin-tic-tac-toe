@@ -27,3 +27,12 @@ test('onlyContainsVals2d - Array contains val not on list', () => {
     array[0][0] = 'Z';
     expect(Util.onlyContainsVals2d(['O','X',''], array)).toBe(false);
 });
+
+
+test('areCoordsValid - valid coordinates', () => {
+    expect(Util.areCoordsValid(1,1,[['',''],['','']])).toBe(true);
+});
+
+test('areCoordsValid - invalid coordinates', () => {
+    expect(Util.areCoordsValid(1,2,[['',''],['','']])).toBe(false);
+});
