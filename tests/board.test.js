@@ -26,3 +26,8 @@ test('Save board - getBoard() - whether saved to object', () => {
                                           ['','','X'],
                                           ['','','']]);
 });
+
+test('isCellEmpty - cell is empty', () => {
+    const gameBoard = Board.Gameboard(3, ['X', 'O']);
+    expect(gameBoard.isCellEmpty(1, 1, gameBoard.getBoard())).toBe(true);
+});

@@ -26,7 +26,15 @@ function Gameboard(sideLength, playerVals) {
         return false;
     };
 
+    const isCellEmpty = (x, y, brd) => {
+        if (Util.areCoordsValid(x, y, brd)) {
+            return brd[x][y] === emptyVal;
+        }
+    }
+
     const getBoard = () => R.clone(board);
+
+    const printBoard = () => board.forEach(arr => console.log(...arr));
 
     // Basic validation but may not contain game logic.
     const isBoardValid = (brd) => {
@@ -35,7 +43,7 @@ function Gameboard(sideLength, playerVals) {
         && Util.onlyContainsVals2d(allowedVals, brd);
     };
 
-    return { save, getBoard, initBoard, setCell };
+    return { save, getBoard, initBoard, setCell, isCellEmpty, printBoard };
 }
 
 export { Gameboard };
