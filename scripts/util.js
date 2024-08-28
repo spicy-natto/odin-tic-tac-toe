@@ -1,3 +1,5 @@
+import { set } from "ramda";
+
 function init2dArray(x, y, fun) {
     return Array.from(Array(x), () => new Array(y).fill(fun()));
 }
@@ -21,10 +23,44 @@ function onlyContainsVals2d(vals, array) {
     return true;
 }
 
-function areCoordsValid(x, y, arr) {
-    return 0 <= x && x < arr.length
-        && Array.isArray(arr[x])
-        && 0 <= y && y < arr[x].length;
+function onlyContains(validList, array) {
+
+    const validSet = new Set();
+    validList.forEach(el => validSet.add(el));
+
+    return (function nestedContains(array) {
+        if (array.length == 0) {
+            return true
+        } else {
+            const [currVal, ...rest] = array;
+            if (!Array.isArray(currVal))
+                return validSet.has(currVal) && nestedContains(rest);
+            else 
+                return nestedContains(currVal) && nestedContains(rest);
+        }
+    })(array);
+
 }
 
-export { init2dArray, isSquareOfLen, onlyContainsVals2d, areCoordsValid };
+
+function areCoordsValid(indices, arr) {
+    const [index, ...rest] = indices;
+    const isIndValid = isIndexValid(index, arr)
+
+    if (indices.length === 1 && isIndValid) {
+        return true;
+    } else {
+        const nextArray = arr[index];
+        return isIndexValid
+            && Array.isArray(nextArray)
+            && areCoordsValid(rest, nextArray);
+    }
+}
+
+function isIndexValid(i, arr) {
+    return 0 <= i && i < arr.length
+}
+
+
+
+export { init2dArray, isSquareOfLen, onlyContainsVals2d, areCoordsValid, onlyContains };

@@ -21,18 +21,25 @@ test('onlyContainsVals2d - Array only contains X, O, and empty string', () => {
     expect(Util.onlyContainsVals2d(['O','X',''], array)).toBe(true);
 });
 
-test('onlyContainsVals2d - Array contains val not on list', () => {
+test('onlyContains - Array only contains X, O, and empty string', () => {
+    const array = Util.init2dArray(2,2,() => '');
+    array[1][1] = 'O';
+    array[0][0] = 'X';
+    expect(Util.onlyContains(['O','X',''], array)).toBe(true);
+});
+
+test('onlyContains - Array contains val not on list', () => {
     const array = Util.init2dArray(2,2,() => '');
     array[1][1] = 'O';
     array[0][0] = 'Z';
-    expect(Util.onlyContainsVals2d(['O','X',''], array)).toBe(false);
+    expect(Util.onlyContains(['O','X',''], array)).toBe(false);
 });
 
 
 test('areCoordsValid - valid coordinates', () => {
-    expect(Util.areCoordsValid(1,1,[['',''],['','']])).toBe(true);
+    expect(Util.areCoordsValid([1, 1], [['',''],['','']])).toBe(true);
 });
 
 test('areCoordsValid - invalid coordinates', () => {
-    expect(Util.areCoordsValid(1,2,[['',''],['','']])).toBe(false);
+    expect(Util.areCoordsValid([1, 2] ,[['',''],['','']])).toBe(false);
 });
