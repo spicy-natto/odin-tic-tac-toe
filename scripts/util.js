@@ -4,6 +4,19 @@ function init2dArray(x, y, fun) {
     return Array.from(Array(x), () => new Array(y).fill(fun()));
 }
 
+function initXdArray(fun) {
+    const [, ...rest] = arguments;
+
+    return (function nestedInit() {
+        if (arguments.length == 0)
+            return fun;
+        else {
+            const [dim, ...rest] = arguments;
+            return () => Array.from(Array(dim), nestedInit(...rest));
+        }
+    })(...rest)();    
+}
+
 // Check whether array is square and has side length of "len"
 function isSquareOfLen(len, array) {
     return array
@@ -63,4 +76,4 @@ function isIndexValid(i, arr) {
 
 
 
-export { init2dArray, isSquareOfLen, onlyContainsVals2d, areCoordsValid, onlyContains };
+export { init2dArray, isSquareOfLen, onlyContainsVals2d, areCoordsValid, onlyContains, initXdArray };

@@ -4,6 +4,15 @@ test('Initialize 2x2 grid', () => {
     expect(Util.init2dArray(2,2,() => 0)).toEqual([[0,0],[0,0]]);
 });
 
+test('InitXdArray - initialize 2x2 grid', () => {
+    expect(Util.initXdArray(() => 0, 2, 2)).toEqual([[0,0],[0,0]]);
+});
+
+test('InitXdArray - initialize 2x2x3 grid', () => {
+    expect(Util.initXdArray(() => 0, 2, 3, 2)).toEqual([[[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0]]]);
+});
+
+
 test('Check if 2x2 grid is square', () => {
     expect(Util.isSquareOfLen(2, Util.init2dArray(2,2,() => 0)))
         .toBe(true);
