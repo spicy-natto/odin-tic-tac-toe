@@ -23,13 +23,6 @@ test('Check if 3x4 grid is square', () => {
         .toBe(false);
 });
 
-test('onlyContainsVals2d - Array only contains X, O, and empty string', () => {
-    const array = Util.init2dArray(2,2,() => '');
-    array[1][1] = 'O';
-    array[0][0] = 'X';
-    expect(Util.onlyContainsVals2d(['O','X',''], array)).toBe(true);
-});
-
 test('onlyContains - Array only contains X, O, and empty string', () => {
     const array = Util.init2dArray(2,2,() => '');
     array[1][1] = 'O';

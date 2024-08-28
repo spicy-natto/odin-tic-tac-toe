@@ -25,17 +25,6 @@ function isSquareOfLen(len, array) {
         && array.length === len;
 }
 
-// Check whether array only contains values in list
-function onlyContainsVals2d(vals, array) {
-    for (let i = 0; i < array.length; i++) {
-        for (let j = 0; j < array[i].length; j++) {
-            if (vals.indexOf(array[i][j]) === -1)
-                return false;
-        }
-    }
-    return true;
-}
-
 function onlyContains(validList, array) {
 
     const validSet = new Set();
@@ -76,4 +65,4 @@ function isIndexValid(i, arr) {
 
 
 
-export { init2dArray, isSquareOfLen, onlyContainsVals2d, areCoordsValid, onlyContains, initXdArray };
+export { init2dArray, isSquareOfLen, areCoordsValid, onlyContains, initXdArray };
