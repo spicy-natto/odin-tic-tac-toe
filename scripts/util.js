@@ -18,11 +18,10 @@ function initXdArray(fun) {
 }
 
 // Check whether array is square and has side length of "len"
-function isSquareOfLen(len, array) {
+function isSquare(array) {
     return array
-        .filter((arr) => arr.length === len)
-        .length === array.length
-        && array.length === len;
+        .filter((arr) => arr.length === array.length)
+        .length === array.length;
 }
 
 function onlyContains(validList, array) {
@@ -75,4 +74,4 @@ function rotateLeft(arr) {
     return newArr;
 }
 
-export { init2dArray, isSquareOfLen, areCoordsValid, onlyContains, initXdArray, rotateLeft };
+export { init2dArray, isSquare, areCoordsValid, onlyContains, initXdArray, rotateLeft };

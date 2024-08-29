@@ -14,12 +14,12 @@ test('InitXdArray - initialize 2x2x3 grid', () => {
 
 
 test('Check if 2x2 grid is square', () => {
-    expect(Util.isSquareOfLen(2, Util.init2dArray(2,2,() => 0)))
+    expect(Util.isSquare(Util.init2dArray(2,2,() => 0)))
         .toBe(true);
 });
 
 test('Check if 3x4 grid is square', () => {
-    expect(Util.isSquareOfLen(2, Util.init2dArray(3,4,() => 0)))
+    expect(Util.isSquare(Util.init2dArray(3,4,() => 0)))
         .toBe(false);
 });
 

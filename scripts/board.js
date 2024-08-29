@@ -39,7 +39,8 @@ function Gameboard(sideLength, playerVals) {
     // Basic validation but may not contain game logic.
     const isBoardValid = (brd) => {
         return Array.isArray(brd)
-        && Util.isSquareOfLen(sideLength, brd)
+        && Util.isSquare(brd)
+        && brd.length === sideLength
         && Util.onlyContains(allowedVals, brd);
     };
 
