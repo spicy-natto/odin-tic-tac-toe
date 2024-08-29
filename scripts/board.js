@@ -40,7 +40,7 @@ function Gameboard(sideLength, playerVals) {
     const isBoardValid = (brd) => {
         return Array.isArray(brd)
         && Util.isSquareOfLen(sideLength, brd)
-        && Util.onlyContainsVals2d(allowedVals, brd);
+        && Util.onlyContains(allowedVals, brd);
     };
 
     return { save, getBoard, initBoard, setCell, isCellEmpty, printBoard };

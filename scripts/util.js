@@ -44,7 +44,6 @@ function onlyContains(validList, array) {
 
 }
 
-
 function areCoordsValid(indices, arr) {
     const [index, ...rest] = indices;
     const isIndValid = isIndexValid(index, arr)
@@ -63,6 +62,16 @@ function isIndexValid(i, arr) {
     return 0 <= i && i < arr.length
 }
 
+function rotateLeft(arr) {
+    const newArr = new Array();
+    arr.forEach(x => {
+        x.forEach((x, ind) => {
+            if (!Array.isArray(newArr[ind]))
+                newArr[ind] = new Array();
+            newArr[ind].push(x);
+        })
+    });
+    return newArr;
+}
 
-
-export { init2dArray, isSquareOfLen, areCoordsValid, onlyContains, initXdArray };
+export { init2dArray, isSquareOfLen, areCoordsValid, onlyContains, initXdArray, rotateLeft };
