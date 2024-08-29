@@ -44,17 +44,18 @@ function onlyContains(validList, array) {
 
 }
 
-function areCoordsValid(indices, arr) {
-    const [index, ...rest] = indices;
-    const isIndValid = isIndexValid(index, arr)
+function areCoordsValid(arr) {
+    const args = Array.from(arguments);
+    const [, index, ...rest] = args;
+    const isIndValid = isIndexValid(index, arr);
 
-    if (indices.length === 1 && isIndValid) {
+    if (rest.length === 0 && isIndValid) {
         return true;
     } else {
         const nextArray = arr[index];
         return isIndexValid
             && Array.isArray(nextArray)
-            && areCoordsValid(rest, nextArray);
+            && areCoordsValid(nextArray, ...rest);
     }
 }
 

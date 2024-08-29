@@ -18,7 +18,7 @@ function Gameboard(sideLength, playerVals) {
     };
 
     const setCell = (x, y, val) => brd => {
-        if (Util.areCoordsValid([x, y], brd)) {
+        if (Util.areCoordsValid(brd, x, y)) {
             const newBrd = R.clone(brd);
             newBrd[x][y] = val;
             return newBrd;
@@ -27,7 +27,7 @@ function Gameboard(sideLength, playerVals) {
     };
 
     const isCellEmpty = (x, y, brd) => {
-        if (Util.areCoordsValid([x, y], brd)) {
+        if (Util.areCoordsValid(brd, x, y)) {
             return brd[x][y] === emptyVal;
         }
     }

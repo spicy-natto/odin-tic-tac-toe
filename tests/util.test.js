@@ -38,11 +38,11 @@ test('onlyContains - Array contains val not on list', () => {
 });
 
 test('areCoordsValid - valid coordinates', () => {
-    expect(Util.areCoordsValid([1, 1], [['',''],['','']])).toBe(true);
+    expect(Util.areCoordsValid([['',''],['','']], 1, 1)).toBe(true);
 });
 
 test('areCoordsValid - invalid coordinates', () => {
-    expect(Util.areCoordsValid([1, 2] ,[['',''],['','']])).toBe(false);
+    expect(Util.areCoordsValid([['',''],['','']], 1, 2)).toBe(false);
 });
 
 test('rotateLeft - square', () => {
