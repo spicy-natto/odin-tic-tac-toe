@@ -1,15 +1,22 @@
 import * as Util from "../scripts/util";
 
 test('Initialize 2x2 grid', () => {
-    expect(Util.init2dArray(2,2,() => 0)).toEqual([[0,0],[0,0]]);
+    expect(Util.init2dArray(2,2,() => 0)).toEqual([[0,0],
+                                                   [0,0]]);
 });
 
 test('InitXdArray - initialize 2x2 grid', () => {
-    expect(Util.initXdArray(() => 0, 2, 2)).toEqual([[0,0],[0,0]]);
+    expect(Util.initXdArray(() => 0, 2, 2)).toEqual([[0,0],
+                                                     [0,0]]);
 });
 
 test('InitXdArray - initialize 2x2x3 grid', () => {
-    expect(Util.initXdArray(() => 0, 2, 3, 2)).toEqual([[[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0]]]);
+    expect(Util.initXdArray(() => 0, 2, 3, 2)).toEqual([[[0,0],
+                                                         [0,0],
+                                                         [0,0]],
+                                                        [[0,0],
+                                                         [0,0],
+                                                         [0,0]]]);
 });
 
 
@@ -69,3 +76,14 @@ test('rotateLeft - rectangle', () => {
 
     expect(Util.rotateLeft(arr)).toEqual(rotatedArr);
 });
+
+test('getDiagonals', () => {
+    const arr = [[1,2,3],
+                 [4,5,6],
+                 [7,8,0]];
+    
+    const diagArr = [[1,5,0],
+                     [3,5,7]];
+
+    expect(Util.getDiagonals(arr)).toEqual(diagArr);    
+})

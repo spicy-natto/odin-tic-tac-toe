@@ -74,4 +74,18 @@ function rotateLeft(arr) {
     return newArr;
 }
 
-export { init2dArray, isSquare, areCoordsValid, onlyContains, initXdArray, rotateLeft };
+function getDiagonals(arr) {
+    if (isSquare(arr)) {
+        const diagArr = Array.from(Array(2), () => Array());
+        arr.forEach((rowArr, ind) => {
+            diagArr[0].push(rowArr[ind]);
+            diagArr[1].push(rowArr[arr.length - ind - 1])
+        })
+        return diagArr;
+    } else {
+        return false;
+    }
+}
+
+
+export { init2dArray, isSquare, areCoordsValid, onlyContains, initXdArray, rotateLeft, getDiagonals };
