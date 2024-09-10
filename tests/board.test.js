@@ -8,22 +8,14 @@ test('Initialize board', () => {
 });
 
 
-test('Save board - output', () => {
+test('setCell - output', () => {
     const gameBoard = Gameboard(3, ['X', 'O']);
-    const saveBoard = gameBoard.setCell(1, 2, 'X')(gameBoard.getBoard());
-    expect(gameBoard.save(saveBoard)).toEqual([['','',''],
-                                               ['','','X'],
-                                               ['','','']]);
+    const newBoard = gameBoard.setCell(1, 2, 'X');
+    expect(newBoard.getBoard()).toEqual([['','',''],
+                                         ['','','X'],
+                                         ['','','']]);
 });
 
-test('Save board - getBoard() - whether saved to object', () => {
-    const gameBoard = Gameboard(3, ['X', 'O']);
-    const saveBoard = gameBoard.setCell(1, 2, 'X')(gameBoard.getBoard());
-    gameBoard.save(saveBoard);
-    expect(gameBoard.getBoard()).toEqual([['','',''],
-                                          ['','','X'],
-                                          ['','','']]);
-});
 
 test('isCellEmpty - cell is empty', () => {
     const gameBoard = Gameboard(3, ['X', 'O']);

@@ -1,27 +1,18 @@
 import * as R from 'ramda';
 import * as Util from './util.js';
 
-function Gameboard(sideLength, playerVals) {
+function Gameboard(sideLength, playerVals, brd) {
     const emptyVal = '';
     const allowedVals = playerVals.concat(emptyVal);
 
     const initBoard = () => 
         Util.init2dArray(sideLength, sideLength, () => emptyVal);
-    let board = initBoard();
 
-    const save = (brd) => {
-        if (isBoardValid(brd)) {
-            board = brd;
-            return R.clone(board);
-        }
-        return false;
-    };
-
-    const setCell = (x, y, val) => brd => {
-        if (Util.areCoordsValid(brd, x, y)) {
-            const newBrd = R.clone(brd);
+    const setCell = (x, y, val) => {
+        if (Util.areCoordsValid(board, x, y)) {
+            const newBrd = R.clone(board);
             newBrd[x][y] = val;
-            return newBrd;
+            return Gameboard(sideLength, playerVals, newBrd);
         }
         return false;
     };
@@ -44,7 +35,10 @@ function Gameboard(sideLength, playerVals) {
         && Util.onlyContains(allowedVals, brd);
     };
 
-    return { save, getBoard, initBoard, setCell, isCellEmpty, printBoard };
+    // Initialize board
+    const board = isBoardValid(brd) ? brd : initBoard();
+
+    return { getBoard, initBoard, setCell, isCellEmpty, printBoard };
 }
 
 export { Gameboard };
