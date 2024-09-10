@@ -15,7 +15,7 @@ test('isWinner - X wins', () => {
                         .setCell(1,1,'X')
                         .setCell(2,2,'X');
 
-    expect(gameLogic.isWinner({token: 'X'}, newBoard.getBoard())).toBe(true);
+    expect(gameLogic.isWinner({token: 'X'}, newBoard)).toBe(true);
 });
 
 test('isWinner - X is not winner', () => {
@@ -24,7 +24,7 @@ test('isWinner - X is not winner', () => {
                         .setCell(1,1,'X')
                         .setCell(2,2,'O');
 
-    expect(gameLogic.isWinner({token: 'X'}, newBoard.getBoard())).toBe(false);
+    expect(gameLogic.isWinner({token: 'X'}, newBoard)).toBe(false);
 });
 
 test('isFull - full', () => {

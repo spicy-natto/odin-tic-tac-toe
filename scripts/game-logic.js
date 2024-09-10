@@ -3,9 +3,10 @@ import * as Util from './util.js';
 
 function GameLogic() {
     function isWinner({ token }, brd) {
-        const horizontalRows = Util.rotateLeft(brd);
-        const diagonals = Util.getDiagonals(brd);
-        const allWinPaths = [brd, horizontalRows, diagonals].flat();
+        const arrBoard = brd.getBoard();
+        const horizontalRows = Util.rotateLeft(arrBoard);
+        const diagonals = Util.getDiagonals(arrBoard);
+        const allWinPaths = [arrBoard, horizontalRows, diagonals].flat();
     
         return allWinPaths.some(arr => Util.onlyContains([token], arr));
     };
