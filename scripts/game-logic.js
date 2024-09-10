@@ -1,3 +1,4 @@
+import { all } from 'ramda';
 import * as Util from './util.js';
 
 function GameLogic() {
@@ -7,9 +8,13 @@ function GameLogic() {
         const allWinPaths = [brd, horizontalRows, diagonals].flat();
     
         return allWinPaths.some(arr => Util.onlyContains([token], arr));
-    }
+    };
 
-    return { isWinner };
+    function isFull(playerVals, brd) {
+         return Util.onlyContains(playerVals, brd.getBoard());
+    };
+
+    return { isWinner, isFull };
 }
 
 

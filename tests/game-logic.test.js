@@ -27,3 +27,20 @@ test('isWinner - X is not winner', () => {
     expect(gameLogic.isWinner({token: 'X'}, newBoard.getBoard())).toBe(false);
 });
 
+test('isFull - full', () => {
+    
+    const fullBoard = Gameboard(3, ['X', 'O'], [['X','O','X'],
+                                                ['X','X','O'],
+                                                ['O','O','X']]);
+
+    expect(gameLogic.isFull(['X','O'], fullBoard)).toBe(true);
+});
+
+test('isFull - partial', () => {
+    
+    const partialBoard = Gameboard(3, ['X', 'O'], [['X','O','X'],
+                                                   ['X','' ,'O'],
+                                                   ['O','O','X']]);
+
+    expect(gameLogic.isFull(['X','O'], partialBoard)).toBe(false);
+});
