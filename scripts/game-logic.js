@@ -20,7 +20,7 @@ function GameLogic() {
          return Util.onlyContains(playerVals, brd.getBoard());
     };
 
-    return { isWinner, isFull, isBoardValid };
+    return { isWinner, isFull };
 }
 
 

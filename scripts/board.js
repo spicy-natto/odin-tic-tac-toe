@@ -3,32 +3,40 @@ import * as Util from './util.js';
 
 function Gameboard(sideLength, brd) {
 
-    const initBoard = () => 
-        Util.init2dArray(sideLength, sideLength, () => emptyVal);
+    // Initialize board
+    const emptyVal = '';
+    const board = brd ? brd : initBoard();
 
-    const setCell = (x, y, val) => {
+    function initBoard() {
+        return Util.init2dArray(sideLength, sideLength, () => emptyVal);
+    }
+
+    function setCell (x, y, val) {
         if (Util.areCoordsValid(board, x, y)) {
             const newBrd = R.clone(board);
             newBrd[x][y] = val;
             return Gameboard(sideLength, newBrd);
         }
         return false;
-    };
-
-    const isCellEmpty = (x, y, brd) => {
-        if (Util.areCoordsValid(brd, x, y)) {
-            return brd[x][y] === emptyVal;
-        }
     }
 
-    const getBoard = () => R.clone(board);
+    function isCellEmpty (x, y, brd) {
+        const arrBoard = brd.getBoard();
+        if (Util.areCoordsValid(arrBoard, x, y)) {
+            return arrBoard[x][y] === emptyVal;
+        }
+        return false;
+    }
 
-    const printBoard = () => board.forEach(arr => console.log(...arr));
+    function getBoard() {
+        return R.clone(board);
+    } 
 
-    // Initialize board
-    const board = brd ? brd : initBoard();
+    function printBoard() {
+        board.forEach(arr => console.log(...arr));
+    }
 
-    return { getBoard, initBoard, setCell, isCellEmpty, printBoard };
+    return { getBoard, setCell, isCellEmpty, printBoard };
 }
 
 export { Gameboard };

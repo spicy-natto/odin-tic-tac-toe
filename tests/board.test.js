@@ -1,7 +1,7 @@
 import { Gameboard } from '../scripts/board';
 
 test('Initialize board', () => {
-    const board = Gameboard(3, ['X', 'O']);
+    const board = Gameboard(3);
     expect(board.getBoard()).toEqual([['','',''],
                                       ['','',''],
                                       ['','','']]);
@@ -9,7 +9,7 @@ test('Initialize board', () => {
 
 
 test('setCell - output', () => {
-    const gameBoard = Gameboard(3, ['X', 'O']);
+    const gameBoard = Gameboard(3);
     const newBoard = gameBoard.setCell(1, 2, 'X');
     expect(newBoard.getBoard()).toEqual([['','',''],
                                          ['','','X'],
@@ -18,6 +18,6 @@ test('setCell - output', () => {
 
 
 test('isCellEmpty - cell is empty', () => {
-    const gameBoard = Gameboard(3, ['X', 'O']);
-    expect(gameBoard.isCellEmpty(1, 1, gameBoard.getBoard())).toBe(true);
+    const gameBoard = Gameboard(3);
+    expect(gameBoard.isCellEmpty(1, 1, gameBoard)).toBe(true);
 });
