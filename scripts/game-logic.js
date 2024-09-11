@@ -1,7 +1,12 @@
-import { all } from 'ramda';
+import { all, empty } from 'ramda';
 import * as Util from './util.js';
 
 function GameLogic() {
+
+   const playerVals = ['X', 'O'];
+   const emptyVal = '';
+   const allowedVals = playerVals.concat(emptyVal);
+
     function isWinner({ token }, brd) {
         const arrBoard = brd.getBoard();
         const horizontalRows = Util.rotateLeft(arrBoard);
@@ -15,7 +20,7 @@ function GameLogic() {
          return Util.onlyContains(playerVals, brd.getBoard());
     };
 
-    return { isWinner, isFull };
+    return { isWinner, isFull, isBoardValid };
 }
 
 

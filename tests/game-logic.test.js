@@ -6,7 +6,7 @@ let board;
 const gameLogic = GameLogic();
 
 beforeEach(() => {
-    board = Gameboard(3, ['X', 'O']);
+    board = Gameboard(3);
 });
 
 test('isWinner - X wins', () => {
@@ -29,18 +29,18 @@ test('isWinner - X is not winner', () => {
 
 test('isFull - full', () => {
     
-    const fullBoard = Gameboard(3, ['X', 'O'], [['X','O','X'],
-                                                ['X','X','O'],
-                                                ['O','O','X']]);
+    const fullBoard = Gameboard(3, [['X','O','X'],
+                                    ['X','X','O'],
+                                    ['O','O','X']]);
 
     expect(gameLogic.isFull(['X','O'], fullBoard)).toBe(true);
 });
 
 test('isFull - partial', () => {
     
-    const partialBoard = Gameboard(3, ['X', 'O'], [['X','O','X'],
-                                                   ['X','' ,'O'],
-                                                   ['O','O','X']]);
+    const partialBoard = Gameboard(3, [['X','O','X'],
+                                       ['X','' ,'O'],
+                                       ['O','O','X']]);
 
     expect(gameLogic.isFull(['X','O'], partialBoard)).toBe(false);
 });

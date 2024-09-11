@@ -1,9 +1,7 @@
 import * as R from 'ramda';
 import * as Util from './util.js';
 
-function Gameboard(sideLength, playerVals, brd) {
-    const emptyVal = '';
-    const allowedVals = playerVals.concat(emptyVal);
+function Gameboard(sideLength, brd) {
 
     const initBoard = () => 
         Util.init2dArray(sideLength, sideLength, () => emptyVal);
@@ -12,7 +10,7 @@ function Gameboard(sideLength, playerVals, brd) {
         if (Util.areCoordsValid(board, x, y)) {
             const newBrd = R.clone(board);
             newBrd[x][y] = val;
-            return Gameboard(sideLength, playerVals, newBrd);
+            return Gameboard(sideLength, newBrd);
         }
         return false;
     };
@@ -27,16 +25,8 @@ function Gameboard(sideLength, playerVals, brd) {
 
     const printBoard = () => board.forEach(arr => console.log(...arr));
 
-    // Basic validation but may not contain game logic.
-    const isBoardValid = (brd) => {
-        return Array.isArray(brd)
-        && Util.isSquare(brd)
-        && brd.length === sideLength
-        && Util.onlyContains(allowedVals, brd);
-    };
-
     // Initialize board
-    const board = isBoardValid(brd) ? brd : initBoard();
+    const board = brd ? brd : initBoard();
 
     return { getBoard, initBoard, setCell, isCellEmpty, printBoard };
 }
