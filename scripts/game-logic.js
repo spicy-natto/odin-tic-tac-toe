@@ -1,26 +1,36 @@
 import { all, empty } from 'ramda';
 import * as Util from './util.js';
 
-function GameLogic() {
+function GameLogic(player1, player2) {
 
-   const playerVals = ['X', 'O'];
-   const emptyVal = '';
-   const allowedVals = playerVals.concat(emptyVal);
+   const playerVals = [player1.token, player2.token];
 
-    function isWinner({ token }, brd) {
+    function isWinner(player, brd) {
         const arrBoard = brd.getBoard();
         const horizontalRows = Util.rotateLeft(arrBoard);
         const diagonals = Util.getDiagonals(arrBoard);
         const allWinPaths = [arrBoard, horizontalRows, diagonals].flat();
     
-        return allWinPaths.some(arr => Util.onlyContains([token], arr));
+        return allWinPaths.some(arr => Util.onlyContains([player.token], arr));
     };
 
-    function isFull(playerVals, brd) {
-         return Util.onlyContains(playerVals, brd.getBoard());
+    function isFull(brd) {
+        return Util.onlyContains(playerVals, brd.getBoard());
     };
 
-    return { isWinner, isFull };
+    function getGameStatus(brd) {
+        if (isWinner(player1, brd)) {
+            return player1.token;
+        } else if (isWinner(player2, brd)) {
+            return player2.token;
+        } else if (isFull(brd)) {
+            return 'TIE'
+        } else {
+            return 'IN PROGRESS'
+        }
+    };
+
+    return { isWinner, isFull, getGameStatus};
 }
 
 

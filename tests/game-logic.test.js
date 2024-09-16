@@ -3,7 +3,7 @@ import { Gameboard } from '../scripts/board';
 import * as R from 'ramda';
 
 let board;
-const gameLogic = GameLogic();
+const gameLogic = GameLogic({token: 'X'}, {token: 'O'});
 
 beforeEach(() => {
     board = Gameboard(3);
@@ -33,7 +33,7 @@ test('isFull - full', () => {
                                     ['X','X','O'],
                                     ['O','O','X']]);
 
-    expect(gameLogic.isFull(['X','O'], fullBoard)).toBe(true);
+    expect(gameLogic.isFull(fullBoard)).toBe(true);
 });
 
 test('isFull - partial', () => {
@@ -42,5 +42,41 @@ test('isFull - partial', () => {
                                        ['X','' ,'O'],
                                        ['O','O','X']]);
 
-    expect(gameLogic.isFull(['X','O'], partialBoard)).toBe(false);
+    expect(gameLogic.isFull(partialBoard)).toBe(false);
+});
+
+test('getGameStatus - O is winner', () => {
+    
+    const winBoard = Gameboard(3, [['X','O','X'],
+                                   ['X','O','O'],
+                                   ['O','O','X']]);
+
+    expect(gameLogic.getGameStatus(winBoard)).toBe('O');
+});
+
+test('getGameStatus - X is winner', () => {
+
+    const winBoard = Gameboard(3, [['X','O','X'],
+                                   ['X','O','O'],
+                                   ['X','' ,'X']]);
+
+    expect(gameLogic.getGameStatus(winBoard)).toBe('X');
+});
+
+test('getGameStatus - tie', () => {
+
+    const winBoard = Gameboard(3, [['X','O','X'],
+                                   ['X','O','O'],
+                                   ['O','X','X']]);
+
+    expect(gameLogic.getGameStatus(winBoard)).toBe('TIE');
+});
+
+test('getGameStatus - in progress', () => {
+
+    const winBoard = Gameboard(3, [['X','O','X'],
+                                   ['X','O','O'],
+                                   ['O','' ,'X']]);
+
+    expect(gameLogic.getGameStatus(winBoard)).toBe('IN PROGRESS');
 });
