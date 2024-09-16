@@ -1,4 +1,3 @@
-import { all, empty } from 'ramda';
 import * as Util from './util.js';
 
 function GameLogic(player1, player2) {
@@ -30,7 +29,13 @@ function GameLogic(player1, player2) {
         }
     };
 
-    return { isWinner, isFull, getGameStatus};
+    function isValidMove(x, y, brd) {
+        if (brd.isCellEmpty)
+            return true;
+        return false;
+    }
+
+    return { isWinner, isFull, getGameStatus, isValidMove };
 }
 
 

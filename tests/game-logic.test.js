@@ -80,3 +80,21 @@ test('getGameStatus - in progress', () => {
 
     expect(gameLogic.getGameStatus(winBoard)).toBe('IN PROGRESS');
 });
+
+test('isValidMove - is valid', () => {
+
+    const board = Gameboard(3, [['X','O','X'],
+                                ['X','O','O'],
+                                ['O','' ,'X']]);
+
+    expect(gameLogic.isValidMove(2, 1, board)).toBe(true);
+});
+
+test('isValidMove - is not valid', () => {
+
+    const board = Gameboard(3, [['X','O','X'],
+                                ['X','O','O'],
+                                ['O','' ,'X']]);
+
+    expect(gameLogic.isValidMove(1, 1, board)).toBe(true);
+});
