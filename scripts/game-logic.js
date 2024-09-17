@@ -30,7 +30,7 @@ function GameLogic(player1, player2) {
     };
 
     function isValidMove(x, y, brd) {
-        if (brd.isCellEmpty)
+        if (brd.isCellEmpty(x, y, brd))
             return true;
         return false;
     }

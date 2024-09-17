@@ -47,7 +47,18 @@ function GameController() {
         board = Board.Gameboard(3);
     }
 
-    return { getActivePlayer, getBoard, printBoard, initialize, getGameStatus, getPlayers };
+    function move(x, y) {
+        const token = activePlayer.token;
+        if (gameLogic.isValidMove(x, y, board)) {
+            board = board.setCell(x, y, token);
+            if (board) {
+                gameStatus = gameLogic.getGameStatus(board);
+                switchActivePlayer();
+            }
+        }
+    }
+
+    return { getActivePlayer, getBoard, printBoard, initialize, getGameStatus, getPlayers, move };
 }
 
 export { GameController };

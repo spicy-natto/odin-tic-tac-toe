@@ -96,5 +96,5 @@ test('isValidMove - is not valid', () => {
                                 ['X','O','O'],
                                 ['O','' ,'X']]);
 
-    expect(gameLogic.isValidMove(1, 1, board)).toBe(true);
+    expect(gameLogic.isValidMove(1, 1, board)).toBe(false);
 });

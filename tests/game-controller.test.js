@@ -1,6 +1,4 @@
-import { beforeEach, describe } from 'node:test';
 import * as GameController from '../scripts/game-controller';
-import { test } from 'ramda';
 
 let controller;
 
@@ -81,7 +79,7 @@ describe('Win condition', () => {
         controller.move(0, 0);
         controller.move(0, 1);
         controller.move(2, 2);
-        controller.move(3, 1);
+        controller.move(2, 1);
     }) ;
 
     test('Board should contain X token', () => {    
@@ -91,7 +89,7 @@ describe('Win condition', () => {
     });
 
     test('Game status should be O', () => {    
-        expect(controller.getGameStatus()).toBe('O');
+        expect(controller.getGameStatus()).toBe('X');
     });
 });
 
