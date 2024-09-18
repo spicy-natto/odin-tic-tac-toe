@@ -1,6 +1,5 @@
 import { GameLogic } from '../scripts/game-logic';
 import { Gameboard } from '../scripts/board';
-import * as R from 'ramda';
 
 let board;
 const gameLogic = GameLogic({token: 'X'}, {token: 'O'});

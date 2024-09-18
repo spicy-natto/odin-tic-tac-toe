@@ -1,7 +1,5 @@
-import { set } from "ramda";
-
 function init2dArray(x, y, fun) {
-    return Array.from(Array(x), () => new Array(y).fill(fun()));
+    return Array.from(Array(x), () => Array.from(Array(y), fun));
 }
 
 function initXdArray(fun) {

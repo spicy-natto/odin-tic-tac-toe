@@ -1,6 +1,6 @@
 import * as R from 'ramda';
-import * as GameLogic from './game-logic';
-import * as Board from './board';
+import * as GameLogic from './game-logic.js';
+import * as Board from './board.js';
 
 function GameController() {
     const players = {
