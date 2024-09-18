@@ -11,7 +11,7 @@ function Gameboard(sideLength, brd) {
         return Util.init2dArray(sideLength, sideLength, () => emptyVal);
     }
 
-    function setCell (x, y, val) {
+    function setCell(x, y, val) {
         if (Util.areCoordsValid(board, x, y)) {
             const newBrd = R.clone(board);
             newBrd[x][y] = val;
@@ -20,12 +20,17 @@ function Gameboard(sideLength, brd) {
         return false;
     }
 
-    function isCellEmpty (x, y, brd) {
-        const arrBoard = brd.getBoard();
-        if (Util.areCoordsValid(arrBoard, x, y)) {
-            return arrBoard[x][y] === emptyVal;
+    function isCellEmpty(x, y) {
+        if (Util.areCoordsValid(board, x, y)) {
+            return board[x][y] === emptyVal;
         }
         return false;
+    }
+
+    function getCell(x, y) {
+        if (Util.areCoordsValid(board, x, y)) {
+            return board[x][y];
+        }
     }
 
     function getBoard() {
@@ -36,7 +41,7 @@ function Gameboard(sideLength, brd) {
         board.forEach(arr => console.log(...arr));
     }
 
-    return { getBoard, setCell, isCellEmpty, printBoard };
+    return { getBoard, setCell, isCellEmpty, printBoard, getCell };
 }
 
 export { Gameboard };
