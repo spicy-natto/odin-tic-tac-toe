@@ -1,5 +1,6 @@
 import * as Util from './util.js';
 import * as GameController from './game-controller.js';
+import { Gameboard } from './board.js';
 
 const domController = (function() {
     const gameBoardDiv = document.querySelector('.game-board');
@@ -40,7 +41,11 @@ const domController = (function() {
                 msg = 'Game is tied!';
                 break;
             case 'IN PROGRESS':
-                msg = 'Game is still in progress!';
+                if(gameController.getActivePlayer().token === 'X') {
+                    msg = 'Player 1: your turn!'
+                } else {
+                    msg = 'Player 2: your turn!'
+                }
                 break;
             default:
                 msg = 'Error';
