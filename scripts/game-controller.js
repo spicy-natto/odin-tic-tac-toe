@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import { clone } from '../node_modules/ramda/es/index.js';
 import * as GameLogic from './game-logic.js';
 import * as Board from './board.js';
 
@@ -15,7 +15,7 @@ function GameController() {
     initialize();
 
     function getActivePlayer() {
-        return R.clone(activePlayer);
+        return clone(activePlayer);
     }
 
     function switchActivePlayer() {
@@ -26,11 +26,17 @@ function GameController() {
     }
 
     function getPlayers() {
-        return R.clone(players);
+        return clone(players);
     }
     
+    //todo - maybe update getBoard to actually
+    // provide board object?
     function getBoard() {
         return board.getBoard();
+    }
+
+    function getCell(row, col) {
+        return board.getCell(row, col);
     }
 
     function printBoard() {
@@ -58,7 +64,7 @@ function GameController() {
         }
     }
 
-    return { getActivePlayer, getBoard, printBoard, initialize, getGameStatus, getPlayers, move };
+    return { getActivePlayer, getBoard, getCell, printBoard, initialize, getGameStatus, getPlayers, move };
 }
 
 export { GameController };

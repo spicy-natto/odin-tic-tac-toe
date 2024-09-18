@@ -30,9 +30,8 @@ function GameLogic(player1, player2) {
     };
 
     function isValidMove(x, y, brd) {
-        if (brd.isCellEmpty(x, y))
-            return true;
-        return false;
+        return getGameStatus(brd) === 'IN PROGRESS'
+            && brd.isCellEmpty(x, y);
     }
 
     return { isWinner, isFull, getGameStatus, isValidMove };

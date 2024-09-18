@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import { clone } from '../node_modules/ramda/es/index.js';
 import * as Util from './util.js';
 
 function Gameboard(sideLength, brd) {
@@ -13,7 +13,7 @@ function Gameboard(sideLength, brd) {
 
     function setCell(x, y, val) {
         if (Util.areCoordsValid(board, x, y)) {
-            const newBrd = R.clone(board);
+            const newBrd = clone(board);
             newBrd[x][y] = val;
             return Gameboard(sideLength, newBrd);
         }
@@ -34,7 +34,7 @@ function Gameboard(sideLength, brd) {
     }
 
     function getBoard() {
-        return R.clone(board);
+        return clone(board);
     } 
 
     return { getBoard, setCell, isCellEmpty, getCell };
