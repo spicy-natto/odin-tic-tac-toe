@@ -37,11 +37,7 @@ function Gameboard(sideLength, brd) {
         return R.clone(board);
     } 
 
-    function printBoard() {
-        board.forEach(arr => console.log(...arr));
-    }
-
-    return { getBoard, setCell, isCellEmpty, printBoard, getCell };
+    return { getBoard, setCell, isCellEmpty, getCell };
 }
 
 export { Gameboard };
