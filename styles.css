@@ -77,6 +77,12 @@ textarea:not([rows]) {
 
 /*** End CSS Reset ***/
 
+:root {
+  --cell-width: 10rem;
+  --cell-gap: 5px;
+  --board-width: calc(calc(var(--cell-gap) * 2) + calc(var(--cell-width) * 3));
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -87,15 +93,24 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(3, 10em);
-    grid-template-rows: repeat(3, 10em);
+    grid-template-columns: repeat(3, var(--cell-width));
+    grid-template-rows: repeat(3, var(--cell-width));
     background: black;
-    border: 5px solid black;
-    gap: 5px;
+    border: var(--cell-gap) solid black;
+    gap: var(--cell-gap);
   }
 
   .game-board button {
     border: none;
     background-color: white;
     font-size: 6em;
+  }
+
+  .players {
+    width: var(--board-width);
+    align-self:center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2rem;
   }
