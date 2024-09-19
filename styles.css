@@ -113,3 +113,7 @@ body {
     justify-content: space-around;
     margin-bottom: 2rem;
   }
+  
+  .players input {
+    text-transform: uppercase;
+  }
