@@ -3,14 +3,35 @@ import * as GameController from './game-controller.js';
 import { Gameboard } from './board.js';
 
 const domController = (function() {
+
+    // Cache DOM
     const gameBoardDiv = document.querySelector('.game-board');
+    const statusMsg = document.querySelector('.game-status');
+    const restartBtn = document.querySelector('.restart-button');
     const cellArray = generateCellArr(3);
     setDomGameBoard(gameBoardDiv, cellArray);
+
+    // Set event listeners
     setCellListeners(cellArray);
-    const statusMsg = document.querySelector('.game-status');
+    restartBtn.addEventListener("click", restartGame);
 
     const gameController = GameController.GameController();
 
+
+    function restartGame()  {
+        gameController.initialize();
+        syncBoard(cellArray, gameController.getBoard());
+        statusMsg.innerText = 
+        createStatusMsg(gameController.getGameStatus());
+    }
+
+    function syncBoard(cellArr, boardArr) {
+        cellArr.forEach((row, rowInd) => {
+            row.forEach((el, colInd) => {
+                el.innerText = boardArr[rowInd][colInd];
+            })
+        });
+    }
 
     function generateCellArr(sideLength) {
         return Util.init2dArray(sideLength, sideLength, createCell);
@@ -32,19 +53,19 @@ const domController = (function() {
         let msg;
         switch(status) {
             case 'X':
-                msg = 'Player 1 wins!';
+                msg = 'PLAYER 1 WINS!';
                 break;
             case 'O':
-                msg = 'Player 2 wins!';
+                msg = 'PLAYER 2 WINS!';
                 break;
             case 'TIE':
-                msg = 'Game is tied!';
+                msg = 'TIE!';
                 break;
             case 'IN PROGRESS':
                 if(gameController.getActivePlayer().token === 'X') {
-                    msg = 'Player 1: your turn!'
+                    msg = 'PLAYER 1 IS UP!'
                 } else {
-                    msg = 'Player 2: your turn!'
+                    msg = 'PLAYER 2 IS UP!'
                 }
                 break;
             default:

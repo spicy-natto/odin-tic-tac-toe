@@ -96,7 +96,6 @@ body {
     grid-template-columns: repeat(3, var(--cell-width));
     grid-template-rows: repeat(3, var(--cell-width));
     background: black;
-    border: var(--cell-gap) solid black;
     gap: var(--cell-gap);
   }
 
