@@ -116,5 +116,17 @@ describe('Tie condition', () => {
     test('Game status should be TIE', () => {    
         expect(controller.getGameStatus()).toBe('TIE');
     });
+});
 
+describe('Set player name', () => {
+
+    test('Player1 should have name "Jeff"', () => {
+        controller.setPlayerName('player1', 'JEFF');    
+        expect(controller.getPlayers().player1.name === 'JEFF');
+    });
+
+    test('Player2 should have name "Marta"', () => {
+        controller.setPlayerName('player2', 'MARTA');    
+        expect(controller.getPlayers().player1.name === 'MARTA');
+    });
 });

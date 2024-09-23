@@ -29,6 +29,12 @@ function GameController() {
         return clone(players);
     }
     
+    function setPlayerName(playerKey, name) {
+        if (playerKey in players) {
+            players[playerKey].name = name;
+        }
+    }
+
     //todo - maybe update getBoard to actually
     // provide board object?
     function getBoard() {
@@ -64,7 +70,8 @@ function GameController() {
         }
     }
 
-    return { getActivePlayer, getBoard, getCell, printBoard, initialize, getGameStatus, getPlayers, move };
+    return { getActivePlayer, getBoard, getCell, printBoard, 
+            initialize, getGameStatus, getPlayers, move, setPlayerName};
 }
 
 export { GameController };

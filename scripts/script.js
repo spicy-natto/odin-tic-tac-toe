@@ -1,6 +1,5 @@
 import * as Util from './util.js';
 import * as GameController from './game-controller.js';
-import { Gameboard } from './board.js';
 
 const domController = (function() {
 
@@ -8,15 +7,26 @@ const domController = (function() {
     const gameBoardDiv = document.querySelector('.game-board');
     const statusMsg = document.querySelector('.game-status');
     const restartBtn = document.querySelector('.restart-button');
+    const player1Name = document.querySelector('#player1-name');
+    const player2Name = document.querySelector('#player2-name');
+
     const cellArray = generateCellArr(3);
     setDomGameBoard(gameBoardDiv, cellArray);
 
-    // Set event listeners
-    setCellListeners(cellArray);
-    restartBtn.addEventListener("click", restartGame);
-
+    // Initialize game controller
     const gameController = GameController.GameController();
 
+    // Set event listeners
+    setCellListeners(cellArray);
+    restartBtn.addEventListener('click', restartGame);
+
+    player1Name.addEventListener('change', (e) => {
+        console.log(e.target);
+        gameController.setPlayerName('player1', e.target.value.toUpperCase());
+    });
+    player2Name.addEventListener('change', (e) => {
+        gameController.setPlayerName('player2', e.target.value.toUpperCase());
+    });
 
     function restartGame()  {
         gameController.initialize();
@@ -50,6 +60,7 @@ const domController = (function() {
 
     // todo make more flexible based on player 1 / player 2 info
     function createStatusMsg(status) {
+        const activePlayer = gameController.getActivePlayer();
         let msg;
         switch(status) {
             case 'X':
@@ -62,10 +73,10 @@ const domController = (function() {
                 msg = 'TIE!';
                 break;
             case 'IN PROGRESS':
-                if(gameController.getActivePlayer().token === 'X') {
-                    msg = 'PLAYER 1 IS UP!'
+                if(activePlayer.token === 'X') {
+                    msg = activePlayer.name + ' IS UP!';
                 } else {
-                    msg = 'PLAYER 2 IS UP!'
+                    msg = activePlayer.name + ' IS UP!'
                 }
                 break;
             default:
