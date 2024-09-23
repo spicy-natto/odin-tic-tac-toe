@@ -89,6 +89,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0;
+    background: #f5f3ff;
 }
 
 .game-board {
@@ -101,8 +102,13 @@ body {
 
   .game-board button {
     border: none;
-    background-color: white;
+    background-color: #f0fdf4;
     font-size: 6em;
+  }
+
+  .game-board button:hover {
+    background-color: #dcfce7;
+    transition: 0.1s;
   }
 
   .players {
@@ -111,7 +117,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .player {
@@ -141,4 +147,39 @@ body {
     text-transform: uppercase;
     text-align: center;
     width: 95%;
+    color: inherit;
+    font-weight: 900;
+    background: #f0fdf4;
+    border: 1px black solid;
+    border-radius: .5rem;
+  }
+
+  .player1 {
+    color: #1e40af;
+  }
+
+  .player2 {
+    color: #db2777;
+  }
+
+  .game-status {
+    margin-top: 0px;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .restart-button {
+    margin-top: 3rem;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background: #dcfce7;
+    border-radius: 1rem;
+    border: 2px solid black;
+    font-weight: 800;
+  }
+
+  .restart-button:hover {
+    background-color: #bbf7d0;
+    transition: 0.1s;
   }
