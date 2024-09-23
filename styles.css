@@ -111,9 +111,34 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
-  
+
+  .player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player h1 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+  }
+
+  .player-input-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player-input-div label {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+  }
+
   .players input {
+    font-size: 1.5rem;
     text-transform: uppercase;
+    text-align: center;
+    width: 95%;
   }
