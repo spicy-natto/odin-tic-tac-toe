@@ -9,7 +9,6 @@ const domController = (function() {
     const restartBtn = document.querySelector('.restart-button');
     const player1Name = document.querySelector('#player1-name');
     const player2Name = document.querySelector('#player2-name');
-
     const cellArray = generateCellArr(3);
     setDomGameBoard(gameBoardDiv, cellArray);
 
@@ -21,7 +20,6 @@ const domController = (function() {
     restartBtn.addEventListener('click', restartGame);
 
     player1Name.addEventListener('change', (e) => {
-        console.log(e.target);
         gameController.setPlayerName('player1', e.target.value.toUpperCase());
     });
     player2Name.addEventListener('change', (e) => {
@@ -48,6 +46,7 @@ const domController = (function() {
             row.forEach((el, colInd) => {
                 const cellToken = boardArr[rowInd][colInd];
                 el.innerText = cellToken;
+                setPlayerClass(cellToken, el);
             })
         });
     }
@@ -70,23 +69,18 @@ const domController = (function() {
     // todo make more flexible based on player 1 / player 2 info
     function createStatusMsg(status) {
         const activePlayer = gameController.getActivePlayer();
+        const playerName = activePlayer.name.toUpperCase();
         let msg;
         switch(status) {
             case 'X':
-                msg = 'PLAYER 1 WINS!';
-                break;
             case 'O':
-                msg = 'PLAYER 2 WINS!';
+                msg = playerName + ' WINS!';
                 break;
             case 'TIE':
                 msg = 'TIE!';
                 break;
             case 'IN PROGRESS':
-                if(activePlayer.token === 'X') {
-                    msg = activePlayer.name.toUpperCase() + '\'S TURN!';
-                } else {
-                    msg = activePlayer.name.toUpperCase() + '\'S TURN!';
-                }
+                    msg = playerName + '\'S TURN!';
                 break;
             default:
                 msg = 'Error';
