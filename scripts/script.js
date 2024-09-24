@@ -15,9 +15,6 @@ const domController = (function() {
 
     // Initialize game controller
     const gameController = GameController.GameController();
-    setPlayerClass(gameController, statusMsg);
-    statusMsg.innerText = 
-    createStatusMsg(gameController.getGameStatus());
 
     // Set event listeners
     setCellListeners(cellArray);
@@ -31,18 +28,26 @@ const domController = (function() {
         gameController.setPlayerName('player2', e.target.value.toUpperCase());
     });
 
-    function restartGame()  {
-        gameController.initialize();
+    // Render
+    render();
+
+    function render() {
         syncBoard(cellArray, gameController.getBoard());
+        setPlayerClass(gameController.getActivePlayer().token, statusMsg);
         statusMsg.innerText = 
             createStatusMsg(gameController.getGameStatus());
-        setPlayerClass(gameController, statusMsg);
+    }
+
+    function restartGame()  {
+        gameController.initialize();
+        render();
     }
 
     function syncBoard(cellArr, boardArr) {
         cellArr.forEach((row, rowInd) => {
             row.forEach((el, colInd) => {
-                el.innerText = boardArr[rowInd][colInd];
+                const cellToken = boardArr[rowInd][colInd];
+                el.innerText = cellToken;
             })
         });
     }
@@ -97,22 +102,15 @@ const domController = (function() {
                 el.addEventListener("click", () => {
                     const gameStatus = gameController.getGameStatus();
                     if (gameStatus === 'IN PROGRESS') {
-                        setPlayerClass(gameController, el);
                         gameController.move(rowInd, colInd);
-                        el.innerText = gameController.getCell(rowInd, colInd);
-                        statusMsg.innerText = 
-                            createStatusMsg(gameController.getGameStatus());
-                        setPlayerClass(gameController, statusMsg);
+                        render();
                     }
                 })
             })
         });
     }
 
-    function setPlayerClass(gameController, el) {
-        const token = gameController.getActivePlayer().token;
-        console.log(token);
-        console.log(el);
+    function setPlayerClass(token, el) {
         if (token === 'X') {
             el.classList.add('player1');
             el.classList.remove('player2');
