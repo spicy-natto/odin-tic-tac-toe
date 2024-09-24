@@ -15,6 +15,9 @@ const domController = (function() {
 
     // Initialize game controller
     const gameController = GameController.GameController();
+    setPlayerClass(gameController, statusMsg);
+    statusMsg.innerText = 
+    createStatusMsg(gameController.getGameStatus());
 
     // Set event listeners
     setCellListeners(cellArray);
@@ -32,7 +35,8 @@ const domController = (function() {
         gameController.initialize();
         syncBoard(cellArray, gameController.getBoard());
         statusMsg.innerText = 
-        createStatusMsg(gameController.getGameStatus());
+            createStatusMsg(gameController.getGameStatus());
+        setPlayerClass(gameController, statusMsg);
     }
 
     function syncBoard(cellArr, boardArr) {
@@ -74,9 +78,9 @@ const domController = (function() {
                 break;
             case 'IN PROGRESS':
                 if(activePlayer.token === 'X') {
-                    msg = activePlayer.name + ' IS UP!';
+                    msg = activePlayer.name.toUpperCase() + '\'S TURN!';
                 } else {
-                    msg = activePlayer.name + ' IS UP!'
+                    msg = activePlayer.name.toUpperCase() + '\'S TURN!';
                 }
                 break;
             default:
@@ -91,12 +95,30 @@ const domController = (function() {
         cellArr.forEach((row, rowInd) => {
             row.forEach((el, colInd) => {
                 el.addEventListener("click", () => {
-                    gameController.move(rowInd, colInd);
-                    el.innerText = gameController.getCell(rowInd, colInd);
-                    statusMsg.innerText = 
-                        createStatusMsg(gameController.getGameStatus());
+                    const gameStatus = gameController.getGameStatus();
+                    if (gameStatus === 'IN PROGRESS') {
+                        setPlayerClass(gameController, el);
+                        gameController.move(rowInd, colInd);
+                        el.innerText = gameController.getCell(rowInd, colInd);
+                        statusMsg.innerText = 
+                            createStatusMsg(gameController.getGameStatus());
+                        setPlayerClass(gameController, statusMsg);
+                    }
                 })
             })
         });
+    }
+
+    function setPlayerClass(gameController, el) {
+        const token = gameController.getActivePlayer().token;
+        console.log(token);
+        console.log(el);
+        if (token === 'X') {
+            el.classList.add('player1');
+            el.classList.remove('player2');
+        } else {
+            el.classList.add('player2');
+            el.classList.remove('player1');
+        };
     }
 })();

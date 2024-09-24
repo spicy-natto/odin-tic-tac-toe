@@ -4,8 +4,8 @@ import * as Board from './board.js';
 
 function GameController() {
     const players = {
-        player1: {token: 'X', name: ''},
-        player2: {token: 'O', name: ''}
+        player1: {token: 'X', name: 'Player 1'},
+        player2: {token: 'O', name: 'Player 2'}
     }
     let activePlayer;
     let gameStatus;
@@ -65,7 +65,8 @@ function GameController() {
             board = board.setCell(x, y, token);
             if (board) {
                 gameStatus = gameLogic.getGameStatus(board);
-                switchActivePlayer();
+                if(gameStatus === 'IN PROGRESS')
+                    switchActivePlayer();
             }
         }
     }
