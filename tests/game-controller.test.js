@@ -1,4 +1,4 @@
-import * as GameController from '../scripts/game-controller';
+import * as GameController from '../src/game-controller';
 
 let controller;
 

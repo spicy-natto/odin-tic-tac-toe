@@ -1,5 +1,6 @@
 import * as Util from './util.js';
 import * as GameController from './game-controller.js';
+import "./styles.css";
 
 const domController = (function() {
 

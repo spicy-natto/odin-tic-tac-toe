@@ -1,4 +1,4 @@
-import { clone } from '../node_modules/ramda/es/index.js';
+import { clone } from 'ramda';
 import * as Util from './util.js';
 
 function Gameboard(sideLength, brd) {

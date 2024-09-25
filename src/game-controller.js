@@ -1,4 +1,4 @@
-import { clone } from '../node_modules/ramda/es/index.js';
+import { clone } from 'ramda';
 import * as GameLogic from './game-logic.js';
 import * as Board from './board.js';
 
