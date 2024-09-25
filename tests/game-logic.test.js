@@ -1,5 +1,5 @@
-import { GameLogic } from '../scripts/game-logic';
-import { Gameboard } from '../scripts/board';
+import { GameLogic } from '../src/game-logic';
+import { Gameboard } from '../src/board';
 
 let board;
 const gameLogic = GameLogic({token: 'X'}, {token: 'O'});
